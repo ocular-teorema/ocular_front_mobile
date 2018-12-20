@@ -1,0 +1,28 @@
+<div class="login-container">
+  <div class="login-container__logo">
+    <img src="./assets/images/logo.png" alt="Логотип">
+  </div>
+
+  <div class="login-container__input-container">
+    <span>Логин</span>
+    <input
+    type="text"
+    [(ngModel)]="login"
+    class="login-container__input"
+    [ngClass]="{'login-container__input_error': isError}">
+  </div>
+
+  <div class="login-container__input-container">
+    <span>Пароль</span>
+    <input
+    type="password"
+    [(ngModel)]="password"
+    class="login-container__input login-container__input_error"
+    [ngClass]="{'login-container__input_error': isError}">
+  </div>
+  <p
+  *ngIf="isError"
+  class="login-container__text-error">Такого аккаунта нет</p>
+
+  <button (click)="onSubmit()">Войти</button>
+</div>
