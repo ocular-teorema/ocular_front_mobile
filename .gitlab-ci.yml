@@ -1,0 +1,17 @@
+include:
+  - https://gitlab.ddgcorp.ru/devops/ci/raw/master/build_nodejs.yml
+
+stages:
+  - build
+
+build:
+  tags:
+    - teorema
+  stage: build
+  image: node:11.3
+  extends: .build_nodejs
+  variables:
+    ARTIFACTS_DIR: dist/teorema-mobile
+  script:
+    - npm i
+    - npm run build
