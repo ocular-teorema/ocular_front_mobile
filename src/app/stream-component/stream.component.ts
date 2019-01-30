@@ -59,12 +59,10 @@ export class StreamComponent implements OnInit, OnDestroy {
     const getCamerasGroupsSub = this._teoremaService.getCamerasGroups(this.selectedOrganizationId)
       .subscribe(res => {
         this.camerasGroupsData = res;
+
         this.camerasGroupsData.map(item => {
-          item.isActive = false;
+          item.isActive = groupId === item.id;
           item.cameras = this.camerasData.filter(camera => {
-            if (camera.organization === groupId && camera.camera_group.id === item.id) {
-              item.isActive = true;
-            }
             return camera.camera_group.id === item.id;
           });
         });
@@ -116,7 +114,7 @@ export class StreamComponent implements OnInit, OnDestroy {
   }
 
   public saveSidebarState(groupId): void {
-    this._store.dispatch(new AddSidebarState(+groupId));
+    this._store.dispatch(new AddSidebarState(groupId));
   }
 
   ngOnDestroy(): void {

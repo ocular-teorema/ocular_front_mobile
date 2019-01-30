@@ -1,12 +1,9 @@
 <div class="camera">
   <div class="camera__return-container">
-    <span
-    routerLink="/stream"
-    class="camera__back-icon"></span>
-
-    <div class="camera__title">
-      <h2 class="camera__h2">{{ currentCamera.group }}</h2>
-      <p class="camera__p">{{ currentCamera.camera }}</p>
+    <a routerLink="/stream" class="camera__back-icon"></a>
+    <div class="camera__title" *ngIf="currentCamera">
+      <h2 class="camera__h2">{{ currentCamera.camera_group.name }}</h2>
+      <p class="camera__p">{{ currentCamera.name }}</p>
     </div>
   </div>
 

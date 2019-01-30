@@ -7,7 +7,7 @@ class="accordion">
   class="accordion__panel">
     <span
     [ngClass]="{'accordion__title_active': group.isActive}"
-    class="accordion__title">{{ group.name }}</span>
+    class="accordion__title">{{ group.id }}</span>
   </div>
 
   <div
@@ -20,18 +20,17 @@ class="accordion">
 
       <span
       routerLink="/camera"
-      [queryParams]="{ group: group.name, camera: camera.name, id: camera.id }"
-      (click)="saveSidebarState(group.name)"
+      [queryParams]="{ id: camera.id }"
       class="accordion__title_camera">{{ camera.name.length > 40 ? camera.name.slice(0, 40) + '...' : camera.name }}</span>
-      <img 
+      <img
       routerLink="/camera"
-      [queryParams]="{ group: group.name, camera: camera.name, id: camera.id  }"
-      (click)="saveSidebarState(group.name)"
+      [queryParams]="{ id: camera.id  }"
+      (click)="saveSidebarState(group.id)"
       class="accordion__placeholder"
       src="{{ camera.preview }}">
     </div>
   </div>
-  
+
   <div
   *ngIf="group.isActive || (group.cameras && group.cameras.length < 1)"
   class="accordion__cameras-container_tablet"
@@ -42,7 +41,7 @@ class="accordion">
       <span class="accordion__title_camera accordion__title_camera_tablet">{{ camera.name }}</span>
       <img
       routerLink="/camera"
-      [queryParams]="{ group: group.name, camera: camera.name, id: camera.id }"
+      [queryParams]="{ id: camera.id }"
       (click)="saveSidebarState(group.name)"
       class="accordion__placeholder accordion__placeholder_tablet"
       src="{{ camera.preview }}">
