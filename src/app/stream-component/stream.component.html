@@ -42,7 +42,7 @@ class="accordion">
       <img
       routerLink="/camera"
       [queryParams]="{ id: camera.id }"
-      (click)="saveSidebarState(group.name)"
+      (click)="saveSidebarState(group.id)"
       class="accordion__placeholder accordion__placeholder_tablet"
       src="{{ camera.preview }}">
     </div>
