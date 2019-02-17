@@ -27,5 +27,5 @@ save:
   dependencies:
     - build
   script:
-    - rm -rf /var/teorema/cache/${CI_PROJECT_NAME}/*
+    - rm -rf /var/teorema/cache/${CI_PROJECT_NAME}
     - cp -r ${ARTIFACTS_DIR} /var/teorema/cache/${CI_PROJECT_NAME}
