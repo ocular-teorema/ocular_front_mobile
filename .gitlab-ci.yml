@@ -1,6 +1,3 @@
-include:
-  - https://gitlab.ddgcorp.ru/devops/ci/raw/master/build_nodejs.yml
-
 stages:
   - build
   - save
@@ -9,15 +6,22 @@ variables:
   ARTIFACTS_DIR: dist/teorema-mobile
 
 build:
+  services:
+    - docker:dind
   tags: 
     - teorema_docker
   stage: build
   image: node:11.3
-  extends: .build_nodejs
   artifacts:
     expire_in: 30 days
     paths:
       - ${ARTIFACTS_DIR}/
+  cache:
+    key: $CI_PROJECT_NAME-node-cache
+    paths:
+      - $NODE_DIR/node_modules/
+      - $NODE_DIR/*.lock
+      - $NODE_DIR/package-lock.json
   script:
     - npm i
     - npm run build
