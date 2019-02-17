@@ -16,6 +16,8 @@ build:
   extends: .build_nodejs
   artifacts:
     expire_in: 30 days
+    paths:
+      - ${ARTIFACTS_DIR}/
   script:
     - npm i
     - npm run build
