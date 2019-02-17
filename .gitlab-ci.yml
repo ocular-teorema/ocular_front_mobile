@@ -6,9 +6,7 @@ stages:
   - save
 
 build:
-  tags:
-    - teorema
-    - docker
+  tags: docker
   stage: build
   image: node:11.3
   extends: .build_nodejs
