@@ -3,10 +3,12 @@ include:
 
 stages:
   - build
+  - save
 
 build:
   tags:
     - teorema
+    - docker
   stage: build
   image: node:11.3
   extends: .build_nodejs
@@ -15,3 +17,11 @@ build:
   script:
     - npm i
     - npm run build
+    
+save:
+  tags: ocular
+  stage: save
+  variables:
+    GIT_STRATEGY: none
+  dependencies:
+    - build
