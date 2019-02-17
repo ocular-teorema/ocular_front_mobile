@@ -5,14 +5,15 @@ stages:
   - build
   - save
 
+variables:
+  ARTIFACTS_DIR: dist/teorema-mobile
+
 build:
   tags: 
     - teorema_docker
   stage: build
   image: node:11.3
   extends: .build_nodejs
-  variables:
-    ARTIFACTS_DIR: dist/teorema-mobile
   script:
     - npm i
     - npm run build
@@ -26,5 +27,5 @@ save:
   dependencies:
     - build
   script:
-    - rm -rf /var/teorema/cache/${CI_PROJECT_NAME}
-    - cp -r . /var/teorema/cache/${CI_PROJECT_NAME}
+    - rm -rf /var/teorema/cache/${CI_PROJECT_NAME}/*
+    - cp -r ${ARTIFACTS_DIR} /var/teorema/cache/${CI_PROJECT_NAME}
