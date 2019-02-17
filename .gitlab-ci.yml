@@ -25,3 +25,6 @@ save:
     GIT_STRATEGY: none
   dependencies:
     - build
+  script:
+    - rm -rf /var/teorema/cache/${CI_PROJECT_NAME}
+    - cp -r . /var/teorema/cache/${CI_PROJECT_NAME}
