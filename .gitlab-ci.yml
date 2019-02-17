@@ -6,7 +6,8 @@ stages:
   - save
 
 build:
-  tags: docker
+  tags: 
+    - docker
   stage: build
   image: node:11.3
   extends: .build_nodejs
@@ -17,7 +18,8 @@ build:
     - npm run build
     
 save:
-  tags: ocular
+  tags: 
+    - ocular
   stage: save
   variables:
     GIT_STRATEGY: none
