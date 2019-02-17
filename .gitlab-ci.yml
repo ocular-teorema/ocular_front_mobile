@@ -7,7 +7,7 @@ stages:
 
 build:
   tags: 
-    - docker
+    - teorema_docker
   stage: build
   image: node:11.3
   extends: .build_nodejs
@@ -19,7 +19,7 @@ build:
     
 save:
   tags: 
-    - ocular
+    - teorema_shell
   stage: save
   variables:
     GIT_STRATEGY: none
