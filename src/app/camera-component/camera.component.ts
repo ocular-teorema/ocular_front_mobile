@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {TeoremaService} from '../services/teorema/teorema.service';
+import {MseService} from '../services/mse/mse';
+
 
 @Component({
   selector: 'app-camera',
@@ -14,7 +16,9 @@ export class CameraComponent implements OnInit, OnDestroy {
 
   private wfs;
 
-  constructor(private _route: ActivatedRoute, private _teoremaService: TeoremaService) { }
+  constructor(private _route: ActivatedRoute, private _teoremaService: TeoremaService, private _MseService: MseService) {
+
+  }
 
   private activateVieo(camera) {
     const player = document.getElementById('camera-stream');
@@ -30,13 +34,8 @@ export class CameraComponent implements OnInit, OnDestroy {
       }, false);
       player['src'] = camera.m3u8_video_url;
     } else {
-      this.wfs = new window['Wfs']();
-      console.log(camera.ws_video_url);
-      this.wfs.attachMedia(
-        player, {
-          host: camera.ws_video_url
-        }
-      );
+      player['controls'] = false;
+      this._MseService.mseConnect(player, camera.ws_video_url);
     }
   }
 
@@ -53,9 +52,7 @@ export class CameraComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.wfs) {
-      this.wfs.websocketLoader.client.close();
-    }
+    this._MseService.destroyConnection();
     this._cameraSub.unsubscribe();
   }
 
