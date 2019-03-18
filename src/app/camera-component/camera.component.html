@@ -7,6 +7,15 @@
     </div>
   </div>
 
-  <video id="camera-stream" controls="controls" autoplay playsinline
-         width="600px" height="400px" class="camera__video"></video>
+  <div class="camera-stream-container">
+    <video id="camera-stream" controls="controls" autoplay playsinline
+           width="600px" height="400px" class="camera__video"></video>
+
+      <button class="" [routerLink]="'/archive/' + currentCamera.id"
+              *ngIf="currentCamera">
+        <span>Архив</span>
+      </button>
+
+  </div>
+
 </div>

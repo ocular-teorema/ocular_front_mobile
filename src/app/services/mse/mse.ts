@@ -14,7 +14,7 @@ export class MseService {
   private _sourcesData;
   private _wsClient;
   private _streamUrl;
-
+  private _sourceBuffer;
 
   private iniMSE(streamUrl?: string, videoElement?: HTMLMediaElement) {
 
@@ -35,28 +35,36 @@ export class MseService {
   }
 
 
-  private onMediaSourceOpen() {
-    const sourceBuffer = this._mediaSource.addSourceBuffer('video/mp4; codecs="avc1.4d401f"');
+  private addSource(sourceBuffer, source) {
+    try {
+      sourceBuffer.appendBuffer(source);
+    } catch(e) {
+      console.log(e);
+    }
+  }
 
-    sourceBuffer.onupdateend = () => {
-      if (sourceBuffer.updating) {
+  private onMediaSourceOpen() {
+    this._sourceBuffer = this._mediaSource.addSourceBuffer('video/mp4; codecs="avc1.4d401f"');
+
+    this._sourceBuffer.onupdateend = () => {
+      if (this._sourceBuffer.updating) {
         return;
       }
       const source = this._sourcesData.shift();
       if (!source) {
         return;
       }
-      sourceBuffer.appendBuffer(source);
+      this.addSource(this._sourceBuffer, source);
     };
 
     this._wsClient = new WebSocket(this._streamUrl);
     this._wsClient.binaryType = 'arraybuffer';
 
     this._wsClient.onmessage = (event) => {
-      if (sourceBuffer.updating) {
+      if (this._sourceBuffer.updating) {
         this._sourcesData.push(event.data);
       } else {
-        sourceBuffer.appendBuffer(event.data);
+        this.addSource(this._sourceBuffer, event.data);
       }
 
       if (!this._startPlayTimes) {
@@ -107,6 +115,7 @@ export class MseService {
       this._wsClient.close();
       this._wsClient.onclose = undefined;
     }
+    this._sourceBuffer.abort();
     clearInterval(this._videoCorrectionInterval);
   }
 
