@@ -1,12 +1,12 @@
 <header class="header">
-  <div
+  <!-- div
   (click)="isMobileMenuActive = !isMobileMenuActive"
   [ngClass]="{'is-active': isMobileMenuActive}"
   class="header__hamburger header__hamburger_first">
     <span class="header__line"></span>
     <span class="header__line"></span>
     <span class="header__line"></span>
-  </div>
+  </div -->
 
   <select
   class="header__select"
@@ -17,13 +17,13 @@
     [value]="org.id">{{ org.name }}</option>
   </select>
 
-  <div
+  <!-- div
   *ngIf="isMobileMenuActive"
   class="header__mobile-menu">
     <a routerLink="stream" routerLinkActive="header__mobile-menu__link_active" class="header__mobile-menu__link">Охрана</a>
-    <a disabled class="header__mobile-menu__link">Архив</a>
+    <a routerLink="archive" routerLinkActive="header__mobile-menu__link_active" class="header__mobile-menu__link">Архив</a>
     <a
     (click)="logout()"
     class="header__mobile-menu__link header__mobile-menu__link_exit">Выход</a>
-  </div>
+  </div -->
 </header>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="43px" height="88px" viewBox="0 0 43 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Group 36</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-36">
+            <g id="Group" transform="translate(13.000000, 26.000000)" fill="#3697ED">
+                <polygon id="Shape-Copy-10" transform="translate(9.000000, 58.000000) scale(-1, 1) rotate(-180.000000) translate(-9.000000, -58.000000) " points="1.13686838e-13 54 9 62 18 54"></polygon>
+                <polygon id="Rectangle-9-Copy" points="8 0 10 0 10 61 8 61"></polygon>
+            </g>
+            <g id="Group-3">
+                <circle id="Oval" fill="#3697ED" cx="21.5" cy="21.5" r="21.5"></circle>
+                <g id="Group-2" transform="translate(6.000000, 6.000000)">
+                    <circle id="Oval-Copy-3" fill="#65B6FF" cx="15.5" cy="15.5" r="15.5"></circle>
+                    <path d="M8,10.5 L23,10.5" id="Path-2" stroke="#FFFFFF" opacity="0.2"></path>
+                    <path d="M8,15.5 L23,15.5" id="Path-2-Copy" stroke="#FFFFFF" opacity="0.2"></path>
+                    <path d="M8,20.5 L23,20.5" id="Path-2-Copy-2" stroke="#FFFFFF" opacity="0.2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

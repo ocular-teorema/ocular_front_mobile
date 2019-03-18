@@ -4,6 +4,7 @@ import { StreamComponent } from './stream-component/stream.component';
 import { AuthComponent } from './auth-component/auth.component';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { CameraComponent } from './camera-component/camera.component';
+import {ArchiveComponent} from './archive/archive.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'stream',
     component: StreamComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'archive/:camera',
+    component: ArchiveComponent,
     canActivate: [AuthGuardService]
   },
   {

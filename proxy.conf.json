@@ -1,18 +1,18 @@
 {
   "/api": {
-    "target": "http://80.254.48.93",
+    "target": "http://78.46.97.176/",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
   "/accounts": {
-    "target": "http://80.254.48.93",
+    "target": "http://78.46.97.176/",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
   "/rest-auth": {
-    "target": "http://80.254.48.93",
+    "target": "http://78.46.97.176/",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

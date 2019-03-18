@@ -29,6 +29,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ng-pick-datetime/assets/style/picker.min.css",
               "src/styles.scss"
             ],
             "scripts": []
