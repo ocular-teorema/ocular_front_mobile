@@ -115,8 +115,10 @@ export class MseService {
       this._wsClient.close();
       this._wsClient.onclose = undefined;
     }
-    this._sourceBuffer.abort();
-    clearInterval(this._videoCorrectionInterval);
+    if (this._sourceBuffer) {
+      this._sourceBuffer.abort();
+      clearInterval(this._videoCorrectionInterval);
+    }
   }
 
   public mseConnect(videoElement, streamUrl) {

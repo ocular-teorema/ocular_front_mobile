@@ -14,8 +14,6 @@ export class CameraComponent implements OnInit, OnDestroy {
   private _cameraSub = new Subscription();
   public currentCamera;
 
-  private wfs;
-
   constructor(private _route: ActivatedRoute, private _teoremaService: TeoremaService, private _MseService: MseService) {
 
   }
