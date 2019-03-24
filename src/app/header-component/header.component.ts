@@ -4,7 +4,7 @@ import { IState } from '../store';
 import { Subscription } from 'rxjs';
 import { AddSelectedOrganization, AddHeaderState } from '../store/teorema/teoremaActions';
 import { AuthService } from '../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,19 +12,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  private _headerSub = new Subscription();
   public isMobileMenuActive: boolean;
   public organizationsData: Array<any>;
   public selectedOrganizationId: number;
-  private _headerSub = new Subscription();
+  public currentUrl: string;
 
   constructor(
     private _store: Store<IState>,
     private _router: Router,
+    private _route: ActivatedRoute,
     private _authService: AuthService
   ) { }
 
   public ngOnInit(): void {
+    if (this._router.url.indexOf('stream') !== -1 || this._router.url.indexOf('camera') !== -1) {
+      this.currentUrl = 'stream';
+    } else if (this._router.url.indexOf('archive') !== -1) {
+      this.currentUrl = 'archive';
+    }
+
     this._getOrganzations();
+    this._updateHeader();
   }
 
   private _getOrganzations(): void {
@@ -49,6 +58,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public onChange(): void {
     this._store.dispatch(new AddSelectedOrganization(this.selectedOrganizationId));
+  }
+
+  private _updateHeader(): void {
+    const eventSub = this._router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if (event.url.indexOf('stream') !== -1 || this._router.url.indexOf('camera') !== -1) {
+          this.currentUrl = 'stream';
+        } else if (event.url.indexOf('archive') !== -1) {
+          this.currentUrl = 'archive';
+        }
+      }
+    });
+
+    this._headerSub.add(eventSub);
   }
 
   public logout(): void {

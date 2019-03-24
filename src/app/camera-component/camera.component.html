@@ -1,21 +1,32 @@
 <div class="camera">
   <div class="camera__return-container">
-    <a routerLink="/stream" class="camera__back-icon"></a>
-    <div class="camera__title" *ngIf="currentCamera">
-      <h2 class="camera__h2">{{ currentCamera.camera_group.name }}</h2>
-      <p class="camera__p">{{ currentCamera.name }}</p>
+
+    <div class="camera__return-container_left">
+      <a routerLink="/stream" class="camera__back-icon"></a>
+      <div class="camera__title" *ngIf="currentCamera">
+        <h2 class="camera__h2">{{ currentCamera.camera_group.name }}</h2>
+        <p class="camera__p">
+          {{ 
+            currentCamera.name.length > 10
+            ? currentCamera.name.slice(0, 10) + '...'
+            : currentCamera.name
+          }}
+        </p>
+      </div>
+    </div>
+
+    <div class="camera__return-container_right">
+      <button
+        class="camera__button"
+        [routerLink]="'/archive/' + currentCamera.id"
+        *ngIf="currentCamera"
+      >Архив</button>
     </div>
   </div>
 
   <div class="camera-stream-container">
     <video id="camera-stream" controls="controls" autoplay playsinline
            width="600px" height="400px" class="camera__video"></video>
-
-      <button class="" [routerLink]="'/archive/' + currentCamera.id"
-              *ngIf="currentCamera">
-        <span>Архив</span>
-      </button>
-
   </div>
 
 </div>

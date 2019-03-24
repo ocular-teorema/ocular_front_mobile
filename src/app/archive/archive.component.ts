@@ -210,7 +210,7 @@ export class ArchiveComponent implements OnInit {
         }
       });
     }
-    this.openedForm = false;
+    this.openedForm = true;
   }
 
   private allArchiveList;
