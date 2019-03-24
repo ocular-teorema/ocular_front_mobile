@@ -65,6 +65,7 @@
       </div>
       <div class="form-control submit-button-container">
         <button type="submit" class="submit-button"
+                (click)="openedForm = !openedForm"
                 [disabled]="archiveLoadingProgress">Применить</button>
       </div>
     </form>
