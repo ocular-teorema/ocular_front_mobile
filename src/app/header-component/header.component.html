@@ -1,12 +1,17 @@
 <header class="header">
-  <!-- div
-  (click)="isMobileMenuActive = !isMobileMenuActive"
-  [ngClass]="{'is-active': isMobileMenuActive}"
-  class="header__hamburger header__hamburger_first">
-    <span class="header__line"></span>
-    <span class="header__line"></span>
-    <span class="header__line"></span>
-  </div -->
+  <span
+    class="header__close"
+    *ngIf="currentUrl === 'stream'"
+    (click)="logout()"
+  ></span>
+
+  <img
+    class="header__arrow"
+    src="./assets/images/arrow-back.svg"
+    alt="arrow back"
+    *ngIf="currentUrl === 'archive'"
+    routerLink="stream"
+  >
 
   <select
   class="header__select"
@@ -16,14 +21,4 @@
     *ngFor="let org of organizationsData"
     [value]="org.id">{{ org.name }}</option>
   </select>
-
-  <!-- div
-  *ngIf="isMobileMenuActive"
-  class="header__mobile-menu">
-    <a routerLink="stream" routerLinkActive="header__mobile-menu__link_active" class="header__mobile-menu__link">Охрана</a>
-    <a routerLink="archive" routerLinkActive="header__mobile-menu__link_active" class="header__mobile-menu__link">Архив</a>
-    <a
-    (click)="logout()"
-    class="header__mobile-menu__link header__mobile-menu__link_exit">Выход</a>
-  </div -->
 </header>
