@@ -5,7 +5,13 @@
       <a routerLink="/stream" class="camera__back-icon"></a>
       <div class="camera__title" *ngIf="currentCamera">
         <h2 class="camera__h2">{{ currentCamera.camera_group.name }}</h2>
-        <p class="camera__p">{{ currentCamera.name.split('').slice(0, 10).join('') + '...' }}</p>
+        <p class="camera__p">
+          {{ 
+            currentCamera.name.length > 10
+            ? currentCamera.name.slice(0, 10) + '...'
+            : currentCamera.name
+          }}
+        </p>
       </div>
     </div>
 
