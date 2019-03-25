@@ -53,3 +53,12 @@ body {
   border-color: #2B91EC transparent!important;
   transform: rotate(180deg);
 }
+
+@media screen and (max-width: 320px) {
+  .cdk-overlay-pane {
+    z-index: 999;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
