@@ -116,6 +116,7 @@ export class ArchiveComponent implements OnInit {
   public openedForm;
 
   ngOnInit() {
+    this.openedForm = false;
     this.getCamera(this._activatedRoute.snapshot.params.camera);
   }
 
@@ -210,7 +211,6 @@ export class ArchiveComponent implements OnInit {
         }
       });
     }
-    this.openedForm = true;
   }
 
   private allArchiveList;
@@ -276,6 +276,7 @@ export class ArchiveComponent implements OnInit {
       this.endTime = currentDateTimeStr[1];
       this.startDate = yesterdayDateTimeStr[0];
       this.startTime = yesterdayDateTimeStr[1];
+      this.openedForm = !this.openedForm;
       this.getCameraArchive();
     } else {
       this.filterArchive();
