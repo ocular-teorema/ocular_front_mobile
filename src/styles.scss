@@ -54,7 +54,7 @@ body {
   transform: rotate(180deg);
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 380px) {
   .cdk-overlay-pane {
     z-index: 999;
     top: 50% !important;
