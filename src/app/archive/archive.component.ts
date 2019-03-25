@@ -224,6 +224,7 @@ export class ArchiveComponent implements OnInit {
       const startTimeMoment = oneMoment.start.split('-');
       momentDateTime.setHours(startTimeMoment[0]);
       momentDateTime.setMinutes(startTimeMoment[1]);
+      console.log(momentDateTime);
       oneMoment.date = momentDateTime;
       const key = formatDate(oneMoment.date, 'y-MM-dd', 'en-US');
       this.archiveList[key] = this.archiveList[key] || [];
@@ -328,8 +329,10 @@ export class ArchiveComponent implements OnInit {
 
       const endVideoTs = this.openedVideo.moment.date.getTime() + this.videoElement.duration * 1000;
       this.videoElement.timePicks = timeLines;
+
       decade.events.forEach((event) => {
-        if (event.startTimeMS > this.openedVideo.moment.date.getTime()) {
+        event.startTimeMS = Math.max(event.startTimeMS, this.openedVideo.moment.date.getTime());
+        if (event.startTimeMS > endVideoTs) {
           event.isHidden = true;
         } else {
           event.endTimeMS = Math.min(event.endTimeMS, endVideoTs);
