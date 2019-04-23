@@ -72,25 +72,34 @@
 </div>
 <div class="archive-content" *ngIf="!openedVideo" [hidden]="openedForm">
   <div class="archive">
-    <div class="archive_group"
-         *ngFor="let dateKey of archiveDatesKeys"
-         [ngClass]="{opened: openedList === dateKey}">
-      <div class="archive_group_title" (click)="openOneDayArchive(dateKey)">
-        {{archiveList[dateKey][0].date | date : 'dd.MM.yyyy'}}
-      </div>
-      <div class="archive_group_list">
-        <div class="archive_group_list_item" *ngFor="let oneMoment of archiveList[dateKey]" [hidden]="oneMoment.hidden">
-          <div class="archive_group_list_item__background"
-               [ngStyle]="{'background-image': 'url(\'' + getSanitizeUrl(camera.analysis !== 1 ? camera.thumb_url + oneMoment.date / 1000 +'/' : camera.thumb_url_record) + '\')'}"
-          ></div>
-          <img src="./assets/images/16x9.gif" class="img-mask"/>
-          <div class="archive_group_list_item-time">
-            {{oneMoment.date | date : 'HH:mm'}}
+    <ng-container *ngIf="archiveDatesKeys.length; else showError">
+      <div class="archive_group"
+           *ngFor="let dateKey of archiveDatesKeys"
+           [ngClass]="{opened: openedList === dateKey}">
+        <div class="archive_group_title" (click)="openOneDayArchive(dateKey)">
+          {{archiveList[dateKey][0].date | date : 'dd.MM.yyyy'}}
+        </div>
+        <div class="archive_group_list">
+          <div class="archive_group_list_item" *ngFor="let oneMoment of archiveList[dateKey]" [hidden]="oneMoment.hidden">
+            <div class="archive_group_list_item__background"
+                 [ngStyle]="{'background-image': 'url(\'' + getSanitizeUrl(camera.analysis !== 1 ? camera.thumb_url + oneMoment.date / 1000 +'/' : camera.thumb_url_record) + '\')'}"
+            ></div>
+            <img src="./assets/images/16x9.gif" class="img-mask"/>
+            <div class="archive_group_list_item-time">
+              {{oneMoment.date | date : 'HH:mm'}}
+            </div>
+            <img src="./assets/images/play-icon.svg" class="play-button" (click)="openVideoFrame(oneMoment)"/>
           </div>
-          <img src="./assets/images/play-icon.svg" class="play-button" (click)="openVideoFrame(oneMoment)"/>
         </div>
       </div>
-    </div>
+    </ng-container>
+
+    <ng-template #showError>
+      <p class="archive__error">
+        По выбранным вами параметрам видео<br>
+        в архиве не найдены
+      </p>
+    </ng-template>
   </div>
 </div>
 

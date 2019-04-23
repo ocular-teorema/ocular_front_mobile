@@ -111,6 +111,14 @@
   &_group + &_group {
     margin-top: 15px;
   }
+  &__error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 1500px) {
