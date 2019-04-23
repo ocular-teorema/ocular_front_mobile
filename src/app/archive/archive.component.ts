@@ -230,7 +230,14 @@ export class ArchiveComponent implements OnInit {
       this.archiveList[key] = this.archiveList[key] || [];
       this.archiveList[key].push(oneMoment);
     });
-    this.archiveDatesKeys = Object.keys(this.archiveList);
+    // this.archiveDatesKeys = Object.keys(this.archiveList);
+
+    for (let archiveKey in this.archiveList) {
+      this.archiveList[archiveKey].forEach(item => {
+        if (item.events.length && this.archiveDatesKeys.indexOf(archiveKey) === -1) this.archiveDatesKeys.push(archiveKey)
+      })
+    }
+
     this.filterArchive();
   }
 
