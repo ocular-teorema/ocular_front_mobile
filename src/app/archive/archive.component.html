@@ -72,7 +72,7 @@
 </div>
 <div class="archive-content" *ngIf="!openedVideo" [hidden]="openedForm">
   <div class="archive">
-    <ng-container *ngIf="archiveDatesKeys.length; else showError">
+    <ng-container *ngIf="archiveDatesKeys && archiveDatesKeys.length; else showError">
       <div class="archive_group"
            *ngFor="let dateKey of archiveDatesKeys"
            [ngClass]="{opened: openedList === dateKey}">
